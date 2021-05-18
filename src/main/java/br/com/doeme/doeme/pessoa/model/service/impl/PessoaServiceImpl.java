@@ -5,6 +5,8 @@ import br.com.doeme.doeme.pessoa.model.entity.Pessoa;
 import br.com.doeme.doeme.pessoa.model.repositories.PessoaRepository;
 import br.com.doeme.doeme.pessoa.model.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +19,13 @@ public class PessoaServiceImpl implements PessoaService {
     private PessoaRepository pessoaRepository;
 
     @Override
+    @Cacheable(value = "pessoasCache")
     public Optional<Pessoa> findByName(String name) {
         return pessoaRepository.findByName(name);
     }
 
     @Override
+    @CacheEvict(value = "pessoasCache", allEntries = true)
     public Pessoa save(Pessoa pessoa) throws ResourceFoundException {
         Optional<Pessoa> pessoaById = findByName(pessoa.getName());
         if (pessoaById.isPresent()) {
@@ -32,6 +36,7 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
+    @CacheEvict(value = "pessoasCache", allEntries = true)
     public Pessoa update(Long id, Pessoa pessoa) {
         Optional<Pessoa> pessoaById = findById(id);
         if (pessoaById.isPresent()) {
@@ -44,16 +49,19 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
+    @Cacheable(value = "pessoasCache")
     public List<Pessoa> list() {
         return pessoaRepository.findAll();
     }
 
     @Override
+    @Cacheable(value = "pessoasCache")
     public Optional<Pessoa> findById(Long id) {
         return pessoaRepository.findById(id);
     }
 
     @Override
+    @CacheEvict(value = "pessoasCache", allEntries = true)
     public void delete(Long id) {
         pessoaRepository.deleteById(id);
     }

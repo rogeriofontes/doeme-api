@@ -43,7 +43,7 @@ public class FornecedorResources {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<Fornecedor> save(@Valid @RequestBody Fornecedor fornecedor) {
+    public ResponseEntity<Fornecedor> save(@Valid @RequestBody Fornecedor fornecedor) throws Exception {
         Fornecedor saved = fornecedorService.save(fornecedor);
 
         if (saved == null)
