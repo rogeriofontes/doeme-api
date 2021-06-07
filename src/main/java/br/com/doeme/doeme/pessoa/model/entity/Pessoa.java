@@ -4,6 +4,7 @@ package br.com.doeme.doeme.pessoa.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -30,6 +31,10 @@ public class Pessoa implements Serializable {
     @NotNull(message = "O e-mail não pode estar vazio")
     @Email
     private String email;
+
+    @NotNull(message = "O e-mail não pode estar vazio")
+    @CPF
+    private String cpf;
 
     public void update(Long id, Pessoa pessoa) {
         this.id = id;
