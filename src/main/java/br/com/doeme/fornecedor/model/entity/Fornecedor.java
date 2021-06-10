@@ -27,7 +27,7 @@ public class Fornecedor implements Serializable {
     @Size(min = 3, max = 60)
     //@Min(3)
     //@Max(60)
-    @Pattern(regexp = "[a-zA-Z0-9]+", message = "must not contain special characters")
+    //@Pattern(regexp = "[a-zA-Z0-9]+", message = "must not contain special characters")
     private String name;
 
     @NotNull(message = "O e-mail não pode estar vazio")

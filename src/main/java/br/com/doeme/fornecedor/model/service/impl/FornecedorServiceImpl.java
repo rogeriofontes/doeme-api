@@ -27,9 +27,9 @@ public class FornecedorServiceImpl implements FornecedorService {
 
     @Override
     public Fornecedor update(Long id, Fornecedor fornecedor) {
-        Optional<Fornecedor> pessoaById = findById(id);
-        if (pessoaById.isPresent()) {
-            var pessoaUpdate = pessoaById.get();
+        Optional<Fornecedor> fornecedorById = findById(id);
+        if (fornecedorById.isPresent()) {
+            var pessoaUpdate = fornecedorById.get();
             pessoaUpdate.update(id, fornecedor);
             return fornecedorRepository.save(pessoaUpdate);
         }
