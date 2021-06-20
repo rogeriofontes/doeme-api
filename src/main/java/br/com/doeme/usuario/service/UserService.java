@@ -6,6 +6,6 @@ import br.com.doeme.usuario.dto.TokenResponse;
 import br.com.doeme.usuario.entiry.Usuario;
 
 public interface UserService {
-    TokenResponse getToken(Usuario usuario) throws ResourceNotFoundException;
-    Usuario register(Usuario usuario) throws ResourceFoundException;
+    TokenResponse getLoginAndReturnToken(Usuario usuario) throws ResourceNotFoundException;
+    Usuario register(Usuario usuario) throws ResourceFoundException, ResourceNotFoundException;
 }

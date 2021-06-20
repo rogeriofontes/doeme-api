@@ -24,7 +24,7 @@ public class LoginController {
     @PostMapping
     @ResponseBody
     public ResponseEntity<TokenResponse> login(@Valid @RequestBody Usuario usuario) throws Exception {
-        TokenResponse token = userService.getToken(usuario);
+        TokenResponse token = userService.getLoginAndReturnToken(usuario);
         if (token != null) {
            return ResponseEntity.ok(token);
         }

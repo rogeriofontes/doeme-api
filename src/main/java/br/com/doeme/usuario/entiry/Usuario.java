@@ -29,6 +29,9 @@ public class Usuario implements UserDetails {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type")
+    private UserType userType;
     @ManyToMany//(cascade = CascadeType.ALL)
     @JoinTable(name = "tb_usuario_perfil", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "perfil_id"))
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

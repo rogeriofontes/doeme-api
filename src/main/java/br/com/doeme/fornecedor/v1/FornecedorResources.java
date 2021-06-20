@@ -1,5 +1,8 @@
 package br.com.doeme.fornecedor.v1;
 
+import br.com.doeme.fornecedor.dto.FornecedorMapper;
+import br.com.doeme.fornecedor.dto.FornecedorRequest;
+import br.com.doeme.fornecedor.dto.FornecedorResponse;
 import br.com.doeme.fornecedor.model.entity.Fornecedor;
 import br.com.doeme.fornecedor.model.service.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +22,19 @@ public class FornecedorResources {
     @Autowired
     private FornecedorService fornecedorService;
 
+    @Autowired
+    private FornecedorMapper fornecedorMapper;
+
     @GetMapping
     @ResponseBody
-    public ResponseEntity<List<Fornecedor>> list() {
+    public ResponseEntity<List<FornecedorResponse>> list() {
         List<Fornecedor> fornecedorList = fornecedorService.list();
+        List<FornecedorResponse> fornecedorResponses = fornecedorMapper.map(fornecedorList);
 
-        if (fornecedorList.isEmpty())
+        if (fornecedorResponses.isEmpty())
             return ResponseEntity.noContent().build();
 
-        return ResponseEntity.ok(fornecedorList);
+        return ResponseEntity.ok(fornecedorResponses);
     }
 
     @GetMapping("/{id}")
@@ -43,25 +50,29 @@ public class FornecedorResources {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<Fornecedor> save(@Valid @RequestBody Fornecedor fornecedor) throws Exception {
+    public ResponseEntity<FornecedorResponse> save(@Valid @RequestBody FornecedorRequest fornecedorRequest) throws Exception {
+        Fornecedor fornecedor = fornecedorMapper.from(fornecedorRequest);
         Fornecedor saved = fornecedorService.save(fornecedor);
+        FornecedorResponse fornecedorResponse = fornecedorMapper.to(saved);
 
-        if (saved == null)
+        if (fornecedorResponse == null)
             return ResponseEntity.noContent().build();
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(saved.getId()).toUri();
-        return ResponseEntity.created(uri).body(saved);
+        return ResponseEntity.created(uri).body(fornecedorResponse);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Fornecedor> update(@PathVariable("id") Long id, @Valid @RequestBody Fornecedor fornecedor) {
+    public ResponseEntity<FornecedorResponse> update(@PathVariable("id") Long id, @Valid @RequestBody FornecedorRequest fornecedorRequest) {
+        Fornecedor fornecedor = fornecedorMapper.from(fornecedorRequest);
         Fornecedor updated = fornecedorService.update(id, fornecedor);
+        FornecedorResponse fornecedorResponse = fornecedorMapper.to(updated);
 
-        if (updated == null)
+        if (fornecedorResponse == null)
             return ResponseEntity.noContent().build();
 
-        return ResponseEntity.ok(updated);
+        return ResponseEntity.ok(fornecedorResponse);
     }
 
     @DeleteMapping("/{id}")
