@@ -35,6 +35,8 @@ public class Donation implements Serializable {
     @Size(min = 3, max = 256, message = "O texto só pode ter 256 caracteres")
     private String donation;
 
+    private String code;
+
     public void update(Long id, Donation donation) {
         this.id = id;
         this.grantee = donation.getGrantee();

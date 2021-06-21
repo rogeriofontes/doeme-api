@@ -3,6 +3,8 @@ package br.com.doeme.grantee.model.service.impl;
 import br.com.doeme.grantee.model.entity.Grantee;
 import br.com.doeme.grantee.model.repositories.GranteeRepository;
 import br.com.doeme.grantee.model.service.GranteeService;
+import br.com.doeme.util.UUIDUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class GranteeServiceImpl implements GranteeService {
 
     @Override
     public Grantee save(Grantee grantee) {
+        if (StringUtils.isEmpty(grantee.getCode())) {
+            grantee.setCode(UUIDUtil.shortUUID());
+        }
         return granteeRepository.save(grantee);
     }
 

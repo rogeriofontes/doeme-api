@@ -1,8 +1,6 @@
 package br.com.doeme.donation.dto;
 
 import br.com.doeme.donation.model.entity.Donation;
-import br.com.doeme.donor.model.entity.Donor;
-import br.com.doeme.grantee.model.entity.Grantee;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -18,6 +16,7 @@ public interface DonationMapper {
     @Mapping(target = "grantee.id", source = "granteeId")
     @Mapping(target = "donor.id", source = "donorId")
     @Mapping(target = "donation", source = "donation")
+    @Mapping(target = "code", source = "code")
     Donation from(DonationRequest request);
 
     @InheritInverseConfiguration

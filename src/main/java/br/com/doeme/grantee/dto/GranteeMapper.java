@@ -21,6 +21,7 @@ public interface GranteeMapper {
     @Mapping(target = "necessity", source = "necessity")
     @Mapping(target = "pic", source = "pic")
     @Mapping(target = "email", source = "email")
+    @Mapping(target = "code", source = "code")
     Grantee from(GranteeRequest request);
 
     @InheritInverseConfiguration

@@ -22,5 +22,6 @@ public class DonorRequest implements Serializable {
     private String name;
     private String local;
     private String email;
+    private String code;
 
 }

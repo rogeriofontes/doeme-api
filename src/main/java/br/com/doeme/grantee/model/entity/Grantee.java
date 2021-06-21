@@ -29,6 +29,8 @@ public class Grantee implements Serializable {
 
     private String local;
 
+    private String code;
+
     @Size(min = 3, max = 256, message = "O texto só pode ter 256 caracteres")
     private String necessity;
 

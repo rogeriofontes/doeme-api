@@ -3,6 +3,8 @@ package br.com.doeme.donation.model.service.impl;
 import br.com.doeme.donation.model.entity.Donation;
 import br.com.doeme.donation.model.repositories.DonationRepository;
 import br.com.doeme.donation.model.service.DonationService;
+import br.com.doeme.util.UUIDUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class DonationServiceImpl implements DonationService {
 
     @Override
     public Donation save(Donation donation) {
+        if (StringUtils.isEmpty(donation.getCode())) {
+            donation.setCode(UUIDUtil.shortUUID());
+        }
         return donationRepository.save(donation);
     }
 

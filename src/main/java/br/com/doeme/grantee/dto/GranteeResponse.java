@@ -25,4 +25,5 @@ public class GranteeResponse implements Serializable {
     private String necessity;
     private String pic;
     private String email;
+    private String code;
 }

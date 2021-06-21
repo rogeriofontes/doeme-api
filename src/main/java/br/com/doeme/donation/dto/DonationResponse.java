@@ -23,4 +23,5 @@ public class DonationResponse implements Serializable {
     private Long granteeId;
     private Long donorId;
     private String donation;
+    private String code;
 }

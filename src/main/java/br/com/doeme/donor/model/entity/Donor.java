@@ -28,6 +28,8 @@ public class Donor implements Serializable {
 
     private String local;
 
+    private String code;
+
     @NotNull(message = "O e-mail não pode estar vazio")
     @Email
     private String email;

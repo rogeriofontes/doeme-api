@@ -16,11 +16,12 @@ public interface DonorMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "local", source = "local")
     @Mapping(target = "email", source = "email")
+    @Mapping(target = "code", source = "code")
     Donor from(DonorRequest request);
 
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")
-    DonorResponse to(Donor usuario);
+    DonorResponse to(Donor donor);
 
-    List<DonorResponse> map(List<Donor> fornecedores);
+    List<DonorResponse> map(List<Donor> donors);
 }
