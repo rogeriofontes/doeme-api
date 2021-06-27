@@ -16,6 +16,8 @@
     <properties>
         <java.version>13</java.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <amazon-sdk.version>1.11.728</amazon-sdk.version>
+        <commons-io.version>2.6</commons-io.version>
     </properties>
     <dependencies>
         <dependency>
@@ -82,7 +84,18 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-
+        <!-- Amazon S3 -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>${amazon-sdk.version}</version>
+        </dependency>
+        <!-- Apache Commons for FileUtils and misc. -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

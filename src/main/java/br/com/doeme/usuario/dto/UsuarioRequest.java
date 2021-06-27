@@ -1,11 +1,8 @@
 package br.com.doeme.usuario.dto;
 
-import br.com.doeme.usuario.entiry.Perfil;
-import br.com.doeme.usuario.entiry.UserType;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
