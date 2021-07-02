@@ -1,5 +1,7 @@
 package br.com.doeme.grantee.dto;
 
+import br.com.doeme.user.entiry.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;
@@ -18,12 +20,9 @@ import java.io.Serializable;
 @Builder
 @Data
 public class GranteeResponse implements Serializable {
-
     private Long id;
-    private String name;
     private String local;
     private String necessity;
     private String pic;
-    private String email;
-    private String code;
+    private User user;
 }

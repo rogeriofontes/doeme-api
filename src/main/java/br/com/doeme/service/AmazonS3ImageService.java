@@ -2,7 +2,7 @@ package br.com.doeme.service;
 
 import br.com.doeme.exceptions.FileConversionException;
 import br.com.doeme.exceptions.InvalidImageExtensionException;
-import br.com.doeme.usuario.repositories.ProductImageRepository;
+import br.com.doeme.user.repositories.ProductImageRepository;
 import br.com.doeme.util.FileUtils;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;

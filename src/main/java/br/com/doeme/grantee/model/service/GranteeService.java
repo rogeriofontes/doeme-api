@@ -6,5 +6,5 @@ import br.com.doeme.service.CrudService;
 import java.util.Optional;
 
 public interface GranteeService extends CrudService<Grantee, Long> {
-    Optional<Grantee> findByName(String name);
+    Optional<Grantee> findByUserId(Long userId);
 }

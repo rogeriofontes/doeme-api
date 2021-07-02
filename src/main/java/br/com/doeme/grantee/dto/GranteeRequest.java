@@ -1,5 +1,6 @@
 package br.com.doeme.grantee.dto;
 
+import br.com.doeme.user.entiry.User;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;
@@ -22,14 +23,9 @@ public class GranteeRequest implements Serializable {
     private static final long serialVersionUID = -1021663214420362107L;
 
     private Long id;
-    @NotNull(message = "O nome não pode estar vazio")
-    @Size(min = 3, max = 60)
-    private String name;
     private String local;
     @Size(min = 3, max = 256, message = "O texto só pode ter 256 caracteres")
     private String necessity;
     private String pic;
-    private String email;
-    private String code;
-
+    private Long userId;
 }

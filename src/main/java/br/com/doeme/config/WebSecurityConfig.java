@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
             "/v1/login",
-            "/v1/cadastro",
+            "/v1/register",
             "/h2-console/**"
     };
 

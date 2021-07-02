@@ -15,18 +15,16 @@ import java.util.List;
 public interface GranteeMapper {
 
     @InheritConfiguration
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "local", source = "local")
-    @Mapping(target = "necessity", source = "necessity")
-    @Mapping(target = "pic", source = "pic")
-    @Mapping(target = "email", source = "email")
-    @Mapping(target = "code", source = "code")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "local", target = "local")
+    @Mapping(source = "necessity", target = "necessity")
+    @Mapping(source = "pic", target = "pic")
+    @Mapping(source = "userId", target = "user.id")
     Grantee from(GranteeRequest request);
 
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")
-    GranteeResponse to(Grantee usuario);
+    GranteeResponse to(Grantee user);
 
     List<GranteeResponse> map(List<Grantee> fornecedores);
 }

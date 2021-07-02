@@ -12,11 +12,9 @@ import java.util.List;
 public interface DonorMapper {
 
     @InheritConfiguration
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "local", source = "local")
-    @Mapping(target = "email", source = "email")
-    @Mapping(target = "code", source = "code")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "local", target = "local")
+    @Mapping(source = "userId", target = "user.id")
     Donor from(DonorRequest request);
 
     @InheritInverseConfiguration

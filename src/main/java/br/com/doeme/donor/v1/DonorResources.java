@@ -5,6 +5,7 @@ import br.com.doeme.donor.dto.DonorRequest;
 import br.com.doeme.donor.dto.DonorResponse;
 import br.com.doeme.donor.model.entity.Donor;
 import br.com.doeme.donor.model.service.DonorService;
+import br.com.doeme.grantee.model.entity.Grantee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,18 @@ public class DonorResources {
     @GetMapping("/{id}")
     @ResponseBody
     public ResponseEntity<Donor> finById(@PathVariable("id") Long id) {
-        Optional<Donor> fornecedores = donorService.findById(id);
+        Optional<Donor> donors = donorService.finByUserId(id);
+
+        if (!donors.isPresent())
+            return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(donors.get());
+    }
+
+    @GetMapping("/user")
+    @ResponseBody
+    public ResponseEntity<Donor> finByUserId(@RequestParam("userId") Long userId) {
+        Optional<Donor> fornecedores = donorService.finByUserId(userId);
 
         if (!fornecedores.isPresent())
             return ResponseEntity.noContent().build();

@@ -1,5 +1,6 @@
 package br.com.doeme.donor.dto;
 
+import br.com.doeme.user.entiry.User;
 import lombok.*;
 
 import java.io.Serializable;
@@ -13,8 +14,6 @@ import java.io.Serializable;
 public class DonorResponse implements Serializable {
 
     private Long id;
-    private String name;
     private String local;
-    private String email;
-    private String code;
+    private User user;
 }

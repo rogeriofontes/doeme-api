@@ -48,6 +48,17 @@ public class GranteeResources {
         return ResponseEntity.ok(fornecedores.get());
     }
 
+    @GetMapping("/user")
+    @ResponseBody
+    public ResponseEntity<Grantee> finByUserId(@RequestParam("userId") Long userId) {
+        Optional<Grantee> fornecedores = granteeService.findByUserId(userId);
+
+        if (!fornecedores.isPresent())
+            return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(fornecedores.get());
+    }
+
     @PostMapping
     @ResponseBody
     public ResponseEntity<GranteeResponse> save(@Valid @RequestBody GranteeRequest granteeRequest) throws Exception {

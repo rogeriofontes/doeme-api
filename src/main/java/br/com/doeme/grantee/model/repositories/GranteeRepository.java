@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface GranteeRepository extends JpaRepository<Grantee, Long> {
-    Optional<Grantee> findByName(String name);
+    Optional<Grantee> findByUserId(Long userId);
 }

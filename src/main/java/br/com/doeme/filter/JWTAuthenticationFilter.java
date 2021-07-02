@@ -1,6 +1,6 @@
 package br.com.doeme.filter;
 
-import br.com.doeme.usuario.service.TokenAuthenticationService;
+import br.com.doeme.user.service.TokenAuthenticationService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;

@@ -3,6 +3,9 @@ package br.com.doeme.grantee.model.service.impl;
 import br.com.doeme.grantee.model.entity.Grantee;
 import br.com.doeme.grantee.model.repositories.GranteeRepository;
 import br.com.doeme.grantee.model.service.GranteeService;
+import br.com.doeme.user.entiry.UserType;
+import br.com.doeme.user.entiry.User;
+import br.com.doeme.user.repositories.UserRepository;
 import br.com.doeme.util.UUIDUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +18,24 @@ import java.util.Optional;
 public class GranteeServiceImpl implements GranteeService {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private GranteeRepository granteeRepository;
 
     @Override
-    public Optional<Grantee> findByName(String name) {
-        return granteeRepository.findByName(name);
+    public Grantee save(Grantee grantee) {
+        Optional<User> userById = userRepository.findById(grantee.getUser().getId());
+        if (userById.isPresent())
+            grantee.setUser(userById.get());
+
+        return granteeRepository.save(grantee);
     }
 
-    @Override
-    public Grantee save(Grantee grantee) {
-        if (StringUtils.isEmpty(grantee.getCode())) {
-            grantee.setCode(UUIDUtil.shortUUID());
-        }
-        return granteeRepository.save(grantee);
+    private User getUserById(Grantee grantee) {
+
+
+        return null;
     }
 
     @Override
@@ -56,4 +64,11 @@ public class GranteeServiceImpl implements GranteeService {
     public void delete(Long id) {
         granteeRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Grantee> findByUserId(Long userId) {
+        return granteeRepository.findByUserId(userId);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package br.com.doeme.donor.dto;
 
+import br.com.doeme.user.entiry.User;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -17,11 +18,6 @@ public class DonorRequest implements Serializable {
     private static final long serialVersionUID = -1021663214420362107L;
 
     private Long id;
-    @NotNull(message = "O nome não pode estar vazio")
-    @Size(min = 3, max = 60)
-    private String name;
     private String local;
-    private String email;
-    private String code;
-
+    private Long userId;
 }

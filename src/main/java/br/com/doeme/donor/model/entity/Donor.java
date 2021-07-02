@@ -1,6 +1,7 @@
 package br.com.doeme.donor.model.entity;
 
 
+import br.com.doeme.user.entiry.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,22 +23,14 @@ public class Donor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "O nome não pode estar vazio")
-    @Size(min = 3, max = 60)
-    private String name;
-
     private String local;
 
-    private String code;
-
-    @NotNull(message = "O e-mail não pode estar vazio")
-    @Email
-    private String email;
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public void update(Long id, Donor donor) {
         this.id = id;
-        this.name = donor.getName();
         this.local = donor.getLocal();
-        this.email = donor.getEmail();
     }
 }

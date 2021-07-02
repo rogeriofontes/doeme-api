@@ -3,6 +3,9 @@ package br.com.doeme.donor.model.service.impl;
 import br.com.doeme.donor.model.entity.Donor;
 import br.com.doeme.donor.model.repositories.DonorRepository;
 import br.com.doeme.donor.model.service.DonorService;
+import br.com.doeme.user.entiry.UserType;
+import br.com.doeme.user.entiry.User;
+import br.com.doeme.user.repositories.UserRepository;
 import br.com.doeme.util.UUIDUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +21,15 @@ public class DonorServiceImpl implements DonorService {
     @Autowired
     private DonorRepository donorRepository;
 
-    @Override
-    public Optional<Donor> findByName(String name) {
-        return donorRepository.findByName(name);
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Donor save(Donor donor) {
-        if (StringUtils.isEmpty(donor.getCode())) {
-            donor.setCode(UUIDUtil.shortUUID());
-        }
+        Optional<User> userById = userRepository.findById(donor.getUser().getId());
+        if (userById.isPresent())
+            donor.setUser(userById.get());
+
         return donorRepository.save(donor);
     }
 
@@ -51,6 +53,11 @@ public class DonorServiceImpl implements DonorService {
     @Override
     public Optional<Donor> findById(Long id) {
         return donorRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Donor> finByUserId(Long id) {
+        return donorRepository.findByUserId(id);
     }
 
     @Override
