@@ -2,15 +2,13 @@ package br.com.doeme.donation.model.entity;
 
 
 import br.com.doeme.donor.model.entity.Donor;
-import br.com.doeme.grantee.model.entity.Grantee;
-import br.com.doeme.ong.model.entity.Ong;
+import br.com.doeme.necessity.model.entity.Necessity;
+import br.com.doeme.ngo.model.entity.Ngo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -26,12 +24,16 @@ public class Donation implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "grantee_id")
-    private Grantee grantee;
+    @JoinColumn(name = "necessity_id")
+    private Necessity necessity;
 
     @ManyToOne
     @JoinColumn(name = "donor_id")
     private Donor donor;
+
+    @ManyToOne
+    @JoinColumn(name = "ngo_id")
+    private Ngo ngo;
 
     @Size(min = 3, max = 256, message = "O texto só pode ter 256 caracteres")
     private String donation;
@@ -40,19 +42,15 @@ public class Donation implements Serializable {
 
     private boolean approved;
 
-    @ManyToOne
-    @JoinColumn(name = "ong_id")
-    private Ong ong;
-
     private String code;
 
     public void update(Long id, Donation donation) {
         this.id = id;
-        this.grantee = donation.getGrantee();
+        this.necessity = donation.getNecessity();
         this.donor = donation.getDonor();
         this.donation = donation.getDonation();
         this.amount = donation.getAmount();
         this.approved = donation.isApproved();
-        this.ong = donation.getOng();
+        this.ngo = donation.getNgo();
     }
 }

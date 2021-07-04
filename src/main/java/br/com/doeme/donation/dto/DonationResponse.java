@@ -1,12 +1,10 @@
 package br.com.doeme.donation.dto;
 
 import br.com.doeme.donor.model.entity.Donor;
-import br.com.doeme.grantee.model.entity.Grantee;
+import br.com.doeme.necessity.model.entity.Necessity;
+import br.com.doeme.ngo.model.entity.Ngo;
 import lombok.*;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @NoArgsConstructor
@@ -20,8 +18,9 @@ public class DonationResponse implements Serializable {
     private static final long serialVersionUID = 4100599494162472544L;
 
     private Long id;
-    private Long granteeId;
+    private Long necessityId;
     private Long donorId;
+    private Long ngoId;
     private String donation;
     private String code;
 }

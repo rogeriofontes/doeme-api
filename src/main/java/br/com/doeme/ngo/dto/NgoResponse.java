@@ -1,4 +1,4 @@
-package br.com.doeme.beneficiary.dto;
+package br.com.doeme.ngo.dto;
 
 import br.com.doeme.user.entiry.User;
 import lombok.*;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @ToString
 @Builder
 @Data
-public class BeneficiaryResponse implements Serializable {
+public class NgoResponse implements Serializable {
 
     private static final long serialVersionUID = -1021663214420362107L;
 

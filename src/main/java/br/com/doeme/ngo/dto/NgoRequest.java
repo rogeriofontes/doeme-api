@@ -1,6 +1,5 @@
-package br.com.doeme.beneficiary.dto;
+package br.com.doeme.ngo.dto;
 
-import br.com.doeme.user.entiry.User;
 import lombok.*;
 
 import java.io.Serializable;
@@ -11,10 +10,10 @@ import java.io.Serializable;
 @ToString
 @Builder
 @Data
-public class BeneficiaryResponse implements Serializable {
+public class NgoRequest implements Serializable {
 
     private static final long serialVersionUID = -1021663214420362107L;
 
     private Long id;
-    private User user;
+    private Long userId;
 }

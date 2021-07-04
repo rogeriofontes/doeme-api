@@ -7,9 +7,9 @@ import br.com.doeme.donor.model.repositories.DonorRepository;
 import br.com.doeme.exceptions.ResourceFoundException;
 import br.com.doeme.exceptions.ResourceNotFoundException;
 import br.com.doeme.filter.JWTUtil;
-import br.com.doeme.grantee.model.repositories.GranteeRepository;
-import br.com.doeme.ong.model.entity.Ong;
-import br.com.doeme.ong.model.repositories.OngRepository;
+import br.com.doeme.necessity.model.repositories.NecessityRepository;
+import br.com.doeme.ngo.model.entity.Ngo;
+import br.com.doeme.ngo.model.repositories.NgoRepository;
 import br.com.doeme.user.dto.RegisterResponse;
 import br.com.doeme.user.dto.TokenResponse;
 import br.com.doeme.user.entiry.Profile;
@@ -45,25 +45,51 @@ public class UserServiceImpl implements UserService {
     private PasswordCryptoService passwordCryptoService;
 
     @Autowired
-    private GranteeRepository granteeRepository;
+    private NecessityRepository necessityRepository;
 
     @Autowired
     private DonorRepository donorRepository;
 
     @Autowired
-    private OngRepository ongRepository;
+    private NgoRepository ngoRepository;
 
     @Autowired
     private BeneficiaryRepository beneficiaryRepository;
 
     @Override
     public TokenResponse getLoginAndReturnToken(User user) throws ResourceNotFoundException {
+        Long beneficiaryId = null;
+        Long donorId = null;
+        Long ongId = null;
+
         Optional<User> userOptional = getUserByEmail(user);
         if (userOptional.isPresent()) {
+            User userFound = userOptional.get();
+
+            if (userFound.getUserType().equals(UserType.NGO)) {
+                Optional<Ngo> ngoSaved = ngoRepository.findByUserId(userFound.getId());
+                if (ngoSaved.isPresent()) {
+                    ongId = ngoSaved.get().getId();
+                }
+            } else if (userFound.getUserType().equals(UserType.DONOR)) {
+                Optional<Donor> donorSaved = donorRepository.findByUserId(userFound.getId());
+                if (donorSaved.isPresent()) {
+                    donorId = donorSaved.get().getId();
+                }
+            } else if (userFound.getUserType().equals(UserType.BENEFICIARY)) {
+                Optional<Beneficiary> beneficiarySaved = beneficiaryRepository.findByUserId(userFound.getId());
+                if (beneficiarySaved.isPresent()) {
+                    beneficiaryId = beneficiarySaved.get().getId();
+                }
+            }
+
             return TokenResponse.builder()
                     .userId(userOptional.get().getId())
                     .token(JWTUtil.createToken(userOptional.get().getEmail()))
-                    .roles(userOptional.get().getProfiles()).build();
+                    .beneficiaryId(beneficiaryId)
+                    .donorId(donorId)
+                    .ongId(ongId)
+                    .profiles(userOptional.get().getProfiles()).build();
         }
 
         return null;
@@ -88,14 +114,14 @@ public class UserServiceImpl implements UserService {
             User userCreated = userRepository.save(user);
 
             if (userCreated.getUserType().equals(UserType.NGO)) {
-                Ong ong = Ong.builder().user(userCreated).build();
-                Ong ongSaved = ongRepository.save(ong);
-                ongId = ongSaved.getId();
+                Ngo ngo = Ngo.builder().user(userCreated).build();
+                Ngo ngoSaved = ngoRepository.save(ngo);
+                ongId = ngoSaved.getId();
             } else if (userCreated.getUserType().equals(UserType.DONOR)) {
                 Donor donor = Donor.builder().user(userCreated).build();
                 Donor donorSaved = donorRepository.save(donor);
                 donorId = donorSaved.getId();
-            } else if (userCreated.getUserType().equals(UserType.GRANTEE)) {
+            } else if (userCreated.getUserType().equals(UserType.BENEFICIARY)) {
                 Beneficiary beneficiary = Beneficiary.builder().user(userCreated).build();
                 Beneficiary beneficiarySaved = beneficiaryRepository.save(beneficiary);
                 beneficiaryId = beneficiarySaved.getId();

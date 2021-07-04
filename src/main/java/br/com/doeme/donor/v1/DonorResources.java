@@ -5,7 +5,6 @@ import br.com.doeme.donor.dto.DonorRequest;
 import br.com.doeme.donor.dto.DonorResponse;
 import br.com.doeme.donor.model.entity.Donor;
 import br.com.doeme.donor.model.service.DonorService;
-import br.com.doeme.grantee.model.entity.Grantee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
