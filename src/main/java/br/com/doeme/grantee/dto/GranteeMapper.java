@@ -19,7 +19,7 @@ public interface GranteeMapper {
     @Mapping(source = "local", target = "local")
     @Mapping(source = "necessity", target = "necessity")
     @Mapping(source = "pic", target = "pic")
-    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "beneficiaryId", target = "beneficiary.id")
     Grantee from(GranteeRequest request);
 
     @InheritInverseConfiguration

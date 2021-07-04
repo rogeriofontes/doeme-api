@@ -1,6 +1,7 @@
 package br.com.doeme.grantee.model.entity;
 
 
+import br.com.doeme.beneficiary.model.entity.Beneficiary;
 import br.com.doeme.user.entiry.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,13 +33,16 @@ public class Grantee implements Serializable {
     private String pic;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "beneficiary_id")
+    private Beneficiary beneficiary;
+
+    private String code;
 
     public void update(Long id, Grantee grantee) {
         this.id = id;
         this.local = grantee.getLocal();
         this.necessity = grantee.getNecessity();
         this.pic = grantee.getPic();
+        this.beneficiary = grantee.getBeneficiary();
     }
 }

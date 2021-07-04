@@ -27,5 +27,5 @@ public class GranteeRequest implements Serializable {
     @Size(min = 3, max = 256, message = "O texto só pode ter 256 caracteres")
     private String necessity;
     private String pic;
-    private Long userId;
+    private Long beneficiaryId;
 }

@@ -1,4 +1,4 @@
-package br.com.doeme.donor.model.entity;
+package br.com.doeme.beneficiary.model.entity;
 
 
 import br.com.doeme.user.entiry.User;
@@ -13,23 +13,23 @@ import java.io.Serializable;
 
 @Slf4j
 @Entity
-@Table(name = "tb_donor")
+@Table(name = "tb_beneficiary")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
-public class Donor implements Serializable {
+public class Beneficiary implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void update(Long id, Donor donor) {
+    public void update(Long id, Beneficiary beneficiary) {
         this.id = id;
-        log.info("Donor: {}", donor.toString());
+        log.info("Beneficiary: {}", beneficiary.toString());
     }
 }

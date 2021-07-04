@@ -14,6 +14,5 @@ import java.io.Serializable;
 public class DonorResponse implements Serializable {
 
     private Long id;
-    private String local;
     private User user;
 }

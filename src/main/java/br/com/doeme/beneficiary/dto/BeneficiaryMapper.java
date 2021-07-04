@@ -1,6 +1,6 @@
-package br.com.doeme.donor.dto;
+package br.com.doeme.beneficiary.dto;
 
-import br.com.doeme.donor.model.entity.Donor;
+import br.com.doeme.beneficiary.model.entity.Beneficiary;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -9,16 +9,16 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface DonorMapper {
+public interface BeneficiaryMapper {
 
     @InheritConfiguration
     @Mapping(source = "id", target = "id")
     @Mapping(source = "userId", target = "user.id")
-    Donor from(DonorRequest request);
+    Beneficiary from(BeneficiaryRequest request);
 
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")
-    DonorResponse to(Donor donor);
+    BeneficiaryResponse to(Beneficiary beneficiary);
 
-    List<DonorResponse> map(List<Donor> donors);
+    List<BeneficiaryResponse> map(List<Beneficiary> beneficiaries);
 }

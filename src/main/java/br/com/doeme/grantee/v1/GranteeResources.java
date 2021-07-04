@@ -51,12 +51,12 @@ public class GranteeResources {
     @GetMapping("/user")
     @ResponseBody
     public ResponseEntity<Grantee> finByUserId(@RequestParam("userId") Long userId) {
-        Optional<Grantee> fornecedores = granteeService.findByUserId(userId);
+        Optional<Grantee> grantees = granteeService.findByBeneficiaryId(userId);
 
-        if (!fornecedores.isPresent())
+        if (!grantees.isPresent())
             return ResponseEntity.noContent().build();
 
-        return ResponseEntity.ok(fornecedores.get());
+        return ResponseEntity.ok(grantees.get());
     }
 
     @PostMapping

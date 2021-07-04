@@ -25,10 +25,6 @@ public class GranteeServiceImpl implements GranteeService {
 
     @Override
     public Grantee save(Grantee grantee) {
-        Optional<User> userById = userRepository.findById(grantee.getUser().getId());
-        if (userById.isPresent())
-            grantee.setUser(userById.get());
-
         return granteeRepository.save(grantee);
     }
 
@@ -66,8 +62,8 @@ public class GranteeServiceImpl implements GranteeService {
     }
 
     @Override
-    public Optional<Grantee> findByUserId(Long userId) {
-        return granteeRepository.findByUserId(userId);
+    public Optional<Grantee> findByBeneficiaryId(Long granteeId) {
+        return granteeRepository.findByBeneficiaryId(granteeId);
     }
 
 

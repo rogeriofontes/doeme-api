@@ -1,5 +1,7 @@
-package br.com.doeme.donor.dto;
+package br.com.doeme.beneficiary.dto;
 
+import br.com.doeme.grantee.model.entity.Grantee;
+import br.com.doeme.user.entiry.User;
 import lombok.*;
 
 import java.io.Serializable;
@@ -10,10 +12,10 @@ import java.io.Serializable;
 @ToString
 @Builder
 @Data
-public class DonorRequest implements Serializable {
+public class BeneficiaryResponse implements Serializable {
 
     private static final long serialVersionUID = -1021663214420362107L;
 
     private Long id;
-    private Long userId;
+    private User user;
 }

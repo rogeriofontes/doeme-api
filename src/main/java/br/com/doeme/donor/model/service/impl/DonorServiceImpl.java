@@ -26,10 +26,6 @@ public class DonorServiceImpl implements DonorService {
 
     @Override
     public Donor save(Donor donor) {
-        Optional<User> userById = userRepository.findById(donor.getUser().getId());
-        if (userById.isPresent())
-            donor.setUser(userById.get());
-
         return donorRepository.save(donor);
     }
 

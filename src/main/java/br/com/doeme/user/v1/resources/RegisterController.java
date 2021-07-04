@@ -2,6 +2,7 @@ package br.com.doeme.user.v1.resources;
 
 import br.com.doeme.exceptions.ResourceFoundException;
 import br.com.doeme.exceptions.ResourceNotFoundException;
+import br.com.doeme.user.dto.RegisterResponse;
 import br.com.doeme.user.dto.UserRequest;
 import br.com.doeme.user.dto.UserResponse;
 import br.com.doeme.user.entiry.User;
@@ -27,14 +28,13 @@ public class RegisterController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<UserResponse> register(@RequestBody UserRequest userRequest, UriComponentsBuilder uriBuilder) throws ResourceFoundException, ResourceNotFoundException {
+    public ResponseEntity<RegisterResponse> register(@RequestBody UserRequest userRequest, UriComponentsBuilder uriBuilder) throws ResourceFoundException, ResourceNotFoundException {
         User user = userMapper.from(userRequest);
-        User registered = userService.register(user);
-        UserResponse userResponse = userMapper.to(registered);
+        RegisterResponse registered = userService.register(user);
 
         if (registered != null){
-            URI location = uriBuilder.path("/{id}").buildAndExpand(userResponse.getId()).toUri();
-            return ResponseEntity.created(location).body(userResponse);
+            URI location = uriBuilder.path("/{id}").buildAndExpand(registered.getId()).toUri();
+            return ResponseEntity.created(location).body(registered);
         }
 
         throw new ResourceFoundException("Usuário não cadastrado!");
