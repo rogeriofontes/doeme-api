@@ -5,6 +5,8 @@ import br.com.doeme.necessity.model.repositories.NecessityRepository;
 import br.com.doeme.necessity.model.service.NecessityService;
 import br.com.doeme.user.entiry.User;
 import br.com.doeme.user.repositories.UserRepository;
+import br.com.doeme.util.UUIDUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class NecessityServiceImpl implements NecessityService {
 
     @Override
     public Necessity save(Necessity necessity) {
+        if (StringUtils.isEmpty(necessity.getCode())) {
+            necessity.setCode(UUIDUtil.shortUUID());
+        }
         return necessityRepository.save(necessity);
     }
 
