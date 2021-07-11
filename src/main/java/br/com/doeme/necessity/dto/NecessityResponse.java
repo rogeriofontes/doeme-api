@@ -18,4 +18,5 @@ public class NecessityResponse implements Serializable {
     private String necessity;
     private String pic;
     private Beneficiary beneficiary;
+    private String code;
 }

@@ -21,6 +21,7 @@ public interface NecessityMapper {
 
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")
+    @Mapping(source = "code", target = "code")
     NecessityResponse to(Necessity necessity);
 
     List<NecessityResponse> map(List<Necessity> necessities);
