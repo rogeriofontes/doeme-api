@@ -19,7 +19,6 @@ public class DonationRequest implements Serializable {
     private Long id;
     private Long necessityId;
     private Long donorId;
-    private Long ngoId;
     @NotNull(message = "O texto só pode ter 256 caracteres")
     @Size(min = 3, max = 60)
     private String donation;

@@ -20,7 +20,6 @@ public class DonationResponse implements Serializable {
     private Long id;
     private Long necessityId;
     private Long donorId;
-    private Long ngoId;
     private String donation;
     private String code;
 }

@@ -15,7 +15,6 @@ public interface DonationMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "necessity.id", source = "necessityId")
     @Mapping(target = "donor.id", source = "donorId")
-    @Mapping(target = "ngo.id", source = "ngoId")
     @Mapping(target = "donation", source = "donation")
     @Mapping(target = "code", source = "code")
     Donation from(DonationRequest request);
@@ -24,7 +23,6 @@ public interface DonationMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "necessityId", expression ="java(donation.getNecessity().getId())")
     @Mapping(target = "donorId", expression = "java(donation.getDonor().getId())")
-    @Mapping(target = "ngoId", expression = "java(donation.getNgo().getId())")
     DonationResponse to(Donation donation);
 
     List<DonationResponse> map(List<Donation> donations);
