@@ -31,16 +31,10 @@ public class Donation implements Serializable {
     @JoinColumn(name = "donor_id")
     private Donor donor;
 
-    @ManyToOne
-    @JoinColumn(name = "ngo_id")
-    private Ngo ngo;
-
     @Size(min = 3, max = 256, message = "O texto só pode ter 256 caracteres")
     private String donation;
 
     private int amount;
-
-    private boolean approved;
 
     private String code;
 
@@ -50,7 +44,5 @@ public class Donation implements Serializable {
         this.donor = donation.getDonor();
         this.donation = donation.getDonation();
         this.amount = donation.getAmount();
-        this.approved = donation.isApproved();
-        this.ngo = donation.getNgo();
     }
 }
