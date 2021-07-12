@@ -1,7 +1,6 @@
 package br.com.doeme.donation.dto;
 
 import br.com.doeme.donation.model.entity.Donation;
-import br.com.doeme.donationapprove.model.entity.DonationApprove;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
